@@ -1,45 +1,49 @@
 /*
  * GuessingGame.java
- * @author: Ata Turkoglu
- * Date: 03/03/2023
+ * author: Ata Turkoglu
+ * Date: 24/03/2023
  */
 
+import java.lang.Math;
 public class GuessingGame{
     //Declare data members
-    private int secret;
     private int guess;
+    private int secret;
     private String message;
 
-    //Constructor 
+    //Constructor
     public GuessingGame(){
-        secret = 0;
         guess = 0;
-        message = "";
+        secret = 0;
     }
 
     //Setters - One for every input
-    public void setSecret(int secret){
-        this.secret = secret;
-    }
     public void setGuess(int guess){
         this.guess = guess;
     }
 
     //Compute method(s)
-    public void checkGuess(){
-        if(guess == secret){
-            message = "Perfect!";
+    public void compute(){
+        secret = 1 + (int)(Math.random() * 10);
+        if (secret == guess){
+            message = "Congratulations, you guessed correctly!";
         }
-        else if(guess > secret){
-            message = "Too high!";
+        else if (secret < guess){
+            message = "You guessed too high, sorry!";
         }
-        else if(guess < secret){
-            message = "Too low!";
+        else if ( secret > guess){
+            message = "you guessed to low, sorry!";
+        }
+        else{
+            message = "Wrong Input";
         }
     }
 
-    //Getters - One for every output
-    public String getOutput(){
+    //Getters
+    public String getMessage(){
         return message;
+    }
+    public int getSecret(){
+        return secret;
     }
 }

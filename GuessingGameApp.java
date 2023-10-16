@@ -1,34 +1,42 @@
 /*
  * GuessingGameApp.java
- * @author: Ata Turkoglu
- * Date: 03/03/2023
+ * author: Ata Turkoglu
+ * Date: 24/03/2023
  */
 
 import javax.swing.JOptionPane;
 public class GuessingGameApp{
     public static void main(String args[]){
+
         //Declare variables
-        int secret, guess;
-        String message;
+        int guess, secret;
+        String message,ans;
 
-        //Declare object
-        GuessingGame myGuessingGame;
+        //Declare objects
+        GuessingGame myGuessingGame = new GuessingGame();
+        
+    
+        do{
+            int i=1;
+            do{
+                //Input
+                guess = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter a guess 1 to 10:"));
+                myGuessingGame.setGuess(guess);
+                
+                //Process
+                myGuessingGame.compute();
 
-        //Create object
-        myGuessingGame = new GuessingGame();
-
-        //Input
-        secret = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter a secret number"));
-        myGuessingGame.setSecret(secret);
-
-        guess = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter a guess"));
-        myGuessingGame.setGuess(guess);
-
-        //Process
-        myGuessingGame.checkGuess();
-
-        //Output
-        message = myGuessingGame.getOutput();
-        JOptionPane.showMessageDialog(null,message);
+                //Output
+                message = myGuessingGame.getMessage();
+                JOptionPane.showMessageDialog(null,message);
+                secret = myGuessingGame.getSecret();
+                
+                i++;
+            }while(i<4);
+            
+            JOptionPane.showMessageDialog(null,secret);
+            ans = JOptionPane.showInputDialog(null,"Do you want to play again (yes/no)");
+        }
+        while(ans.equalsIgnoreCase("yes"));
     }
 }
